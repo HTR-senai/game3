@@ -1,0 +1,55 @@
+#include <stdio.h>
+
+int main() {
+    
+    int mapa[5][5] = {
+    {9,0,0,0,0}
+    {0,1,1,0,0}
+    {0,0,0,1,0}
+    {1,0,0,0,1}
+    {0,0,1,0,0}
+    };
+    
+    int linha = 0, coluna = 0;
+    char comando;
+    
+    while(1) {
+        printf("Mapa atual:\n");
+        for (i = 0; i < 5; i++) {
+            for (j = 0; j < 5; j++) {
+                printf("%d", mapa[i][j]);
+        }
+        printf("\n");
+    }
+    
+    printf("\nDigite WASD ou Q (sair): ");
+    scanf(" %c", &comando);
+    
+    if (comando == 'Q') {
+        printf("Saindo do jogo");
+        break;
+    }
+    
+    mapa[linha][coluna] = 0;
+    
+    if ((comando == 'W') && linha > 0 && mapa[linha - 1][coluna] != 1) {
+        linha--;
+    }else if ((comando == 'S') && linha > 0 && mapa[linha + 1][coluna] !=1) {
+        linha++;
+    }else if ((comando == 'A') && coluna > 0 && mapa[linha][coluna - 1] != 1) {
+        coluna--;
+    }else if ((comando == 'D') && coluna > 0 && mapa[linha][coluna + 1] != 1) {
+        coluna++;
+    }else {
+        printf("movimento inválido! Parede ou fora da linha");
+    }
+    
+    mapa[linha][coluna] = 9;
+    
+    if(linha == 4 && coluna == 4) {
+        printf("Parabéns! Você chegou ao destino!");
+        break;
+    }
+
+    return 0;
+}
